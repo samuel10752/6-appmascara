@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TiposProdutosService } from '../tipos-produtos.service';
 
 @Component({
   selector: 'app-produtos-listagem',
@@ -7,14 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdutosListagemPage implements OnInit {
 
-  public produtos = [
-    {id: 1, nome: "amotecedor", valor: 299.99 },
-    {id: 2, nome: "mola", valor: 59.99 }
-  ]
+  public produtos
   
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private produtos_service : TiposProdutosService
+  ) { }
 
   ngOnInit() {
+    
+    const id: number =  Number(this.route.snapshot.paramMap.get('id'))
+    this.produtos = this.produtos_service.enviar_id(id);
   }
 
 }
