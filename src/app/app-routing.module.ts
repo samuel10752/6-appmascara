@@ -8,9 +8,23 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'produtos-listagem',
     pathMatch: 'full'
   },
+  {
+    path: 'formulario',
+    loadChildren: () => import('./formulario/formulario.module').then( m => m.FormularioPageModule)
+  },
+  {
+    path: 'produtos-listagem',
+    loadChildren: () => import('./produtos/produtos-listagem/produtos-listagem.module').then( m => m.ProdutosListagemPageModule)
+  },
+  {
+    path: 'produtos-detalhes/:id',
+    loadChildren: () => import('./produtos-detalhes/produtos-detalhes.module').then( m => m.ProdutosDetalhesPageModule)
+  },
+
+
 ];
 
 @NgModule({
